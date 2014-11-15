@@ -16,7 +16,6 @@
             android:entries="@array/pref_download_avatars_entries"
             android:entryValues="@array/pref_download_avatars_entry_values"
             android:key="pref_key_download_avatars"
-            android:summary="%s"
             android:title="@string/pref_download_avatars"/>
 
         <ListPreference
@@ -25,7 +24,6 @@
             android:entries="@array/pref_download_images_entries"
             android:entryValues="@array/pref_download_images_entry_values"
             android:key="pref_key_download_images"
-            android:summary="%s"
             android:title="@string/pref_download_images"/>
 
     </PreferenceCategory>
