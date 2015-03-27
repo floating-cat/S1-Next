@@ -94,7 +94,7 @@ public abstract class BaseFragment<D extends Extractable>
         if (fragment == null) {
             mDataRetainedFragment = new DataRetainedFragment<>();
             fragmentManager.beginTransaction()
-                    .add(mDataRetainedFragment, dataRetainedFragmentTag).commit();
+                    .add(mDataRetainedFragment, dataRetainedFragmentTag).commitAllowingStateLoss();
         } else {
             mDataRetainedFragment = ObjectUtil.uncheckedCast(fragment);
 
