@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,6 +35,9 @@ import com.squareup.okhttp.RequestBody;
 
 import org.apache.commons.lang3.Range;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import cl.monsoon.s1next.Api;
 import cl.monsoon.s1next.R;
 import cl.monsoon.s1next.adapter.ThreadAttachmentInfoListArrayAdapter;
@@ -41,6 +45,7 @@ import cl.monsoon.s1next.fragment.BaseFragment;
 import cl.monsoon.s1next.fragment.LoaderDialogFragment;
 import cl.monsoon.s1next.fragment.PostListPagerFragment;
 import cl.monsoon.s1next.model.Result;
+import cl.monsoon.s1next.model.Thread;
 import cl.monsoon.s1next.model.list.PostList;
 import cl.monsoon.s1next.model.mapper.ResultWrapper;
 import cl.monsoon.s1next.singleton.Config;
@@ -67,6 +72,8 @@ public class PostListActivity extends BaseActivity
     public static final String ARG_SHOULD_GO_TO_LAST_PAGE = "should_go_to_last_page";
 
     public static final String ACTION_QUOTE = "quote";
+
+    private static final Pattern PATH_PATTERN = Pattern.compile("thread-(\\d+)-(\\d+)-1.html(#pid(\\d+))?");
 
     /**
      * The serialization (saved instance state) Bundle key representing
@@ -96,6 +103,8 @@ public class PostListActivity extends BaseActivity
 
     private BroadcastReceiver mQuoteReceiver;
 
+    private int mPageToJumpAfterLoaded;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,7 +114,24 @@ public class PostListActivity extends BaseActivity
 
         setNavDrawerIndicatorEnabled(false);
 
-        cl.monsoon.s1next.model.Thread thread = getIntent().getParcelableExtra(ARG_THREAD);
+        cl.monsoon.s1next.model.Thread thread;
+        // when call by other application
+        if (Intent.ACTION_VIEW.equals(getIntent().getAction())) {
+            Uri link = getIntent().getData();
+            String lastPathSegment = link.getLastPathSegment();
+            Matcher matcher = PATH_PATTERN.matcher(lastPathSegment);
+            // use regex to select information we want from external link
+            // check matches is not necessary because it's assure by intent filter
+            boolean match = matcher.matches();
+            String threadId = matcher.group(1);
+            mPageToJumpAfterLoaded = Integer.valueOf(matcher.group(2));
+            int postId = TextUtils.isEmpty(matcher.group(4)) ? 0 : Integer.valueOf(matcher.group(4));
+            thread = new Thread();
+            thread.setId(threadId);
+        } else {
+            thread = getIntent().getParcelableExtra(ARG_THREAD);
+        }
+
         // we have no title if we use `Jump to thread` feature
         mThreadTitle = thread.getTitle();
         if (TextUtils.isEmpty(mThreadTitle)) {
@@ -152,6 +178,13 @@ public class PostListActivity extends BaseActivity
 
         // set ViewPager to last page when true
         if (getIntent().getBooleanExtra(ARG_SHOULD_GO_TO_LAST_PAGE, false)) {
+            mViewPager.setCurrentItem(mTotalPages - 1);
+        } else if (mPageToJumpAfterLoaded > 0) {
+            // we don't know how many posts in this thread at this moment,
+            // so we set the totalPages equals the page number we suppose to jump to.
+            // there's 30 posts per page on website and it's same as posts per page on client at present,
+            // no need to figure out the correct page number here.
+            setTotalPages(mPageToJumpAfterLoaded * Config.POSTS_PER_PAGE);
             mViewPager.setCurrentItem(mTotalPages - 1);
         }
 
