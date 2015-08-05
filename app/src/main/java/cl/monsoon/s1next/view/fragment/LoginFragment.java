@@ -27,18 +27,19 @@ public final class LoginFragment extends Fragment {
 
     public static final String TAG = LoginFragment.class.getName();
 
+    private FragmentLoginBinding mFragmentLoginBinding;
     private EditText mUsernameView;
     private EditText mPasswordView;
     private Button mLoginView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        FragmentLoginBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login,
+        mFragmentLoginBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_login,
                 container, false);
-        mUsernameView = binding.username;
-        mPasswordView = binding.password;
-        mLoginView = binding.login;
-        return binding.getRoot();
+        mUsernameView = mFragmentLoginBinding.username;
+        mPasswordView = mFragmentLoginBinding.password;
+        mLoginView = mFragmentLoginBinding.login;
+        return mFragmentLoginBinding.getRoot();
     }
 
     @Override
@@ -95,13 +96,13 @@ public final class LoginFragment extends Fragment {
         View focusView = null;
         CharSequence error = getText(R.string.error_field_required);
         if (TextUtils.isEmpty(username)) {
-            mUsernameView.setError(error);
+            mFragmentLoginBinding.usernameWrapper.setError(error);
             cancel = true;
             focusView = mUsernameView;
         }
 
         if (TextUtils.isEmpty(password)) {
-            mPasswordView.setError(error);
+            mFragmentLoginBinding.passwordWrapper.setError(error);
             cancel = true;
             if (focusView == null) {
                 focusView = mPasswordView;
