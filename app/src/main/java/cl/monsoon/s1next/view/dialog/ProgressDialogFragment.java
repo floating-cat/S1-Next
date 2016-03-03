@@ -16,7 +16,7 @@ import cl.monsoon.s1next.App;
 import cl.monsoon.s1next.data.User;
 import cl.monsoon.s1next.data.api.S1Service;
 import cl.monsoon.s1next.data.api.UserValidator;
-import cl.monsoon.s1next.data.api.model.Account;
+import cl.monsoon.s1next.data.api.model.AccountInfo;
 import cl.monsoon.s1next.data.api.model.wrapper.ResultWrapper;
 import cl.monsoon.s1next.util.ErrorUtil;
 import cl.monsoon.s1next.util.RxJavaUtil;
@@ -119,14 +119,14 @@ abstract class ProgressDialogFragment<D> extends DialogFragment {
         String authenticityToken = mUser.getAuthenticityToken();
         if (TextUtils.isEmpty(authenticityToken)) {
             return mS1Service.refreshAuthenticityToken().flatMap(resultWrapper -> {
-                Account account = resultWrapper.getAccount();
+                AccountInfo accountInfo = resultWrapper.getAccountInfo();
                 // return the ResultWrapper if we cannot get the authenticity token
                 // (if account has expired or network error)
-                if (TextUtils.isEmpty(account.getAuthenticityToken())) {
+                if (TextUtils.isEmpty(accountInfo.getAuthenticityToken())) {
                     return Observable.just(resultWrapper);
                 } else {
-                    mUserValidator.validate(account);
-                    return func.call(account.getAuthenticityToken());
+                    mUserValidator.validate(accountInfo);
+                    return func.call(accountInfo.getAuthenticityToken());
                 }
             });
         } else {

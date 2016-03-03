@@ -1,7 +1,6 @@
 package cl.monsoon.s1next.data;
 
 public class User {
-
     private volatile String uid;
 
     private volatile String name;

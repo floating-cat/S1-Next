@@ -3,18 +3,13 @@ package cl.monsoon.s1next.data.api.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Objects;
+import com.squareup.moshi.Json;
 
-import org.apache.commons.lang3.StringEscapeUtils;
+import cl.monsoon.s1next.data.api.typeadapter.XmlDecoded;
 
-@SuppressWarnings("UnusedDeclaration")
-@JsonIgnoreProperties(ignoreUnknown = true)
 public final class Forum implements Parcelable {
-
     public static final Parcelable.Creator<Forum> CREATOR = new Parcelable.Creator<Forum>() {
-
         @Override
         public Forum createFromParcel(Parcel source) {
             return new Forum(source);
@@ -26,58 +21,47 @@ public final class Forum implements Parcelable {
         }
     };
 
-    @JsonProperty("fid")
-    private String id;
+    @Json(name = "fid")
+    private final String id;
 
-    @JsonProperty("name")
-    private String name;
+    @Json(name = "name")
+    @XmlDecoded
+    private final String name;
 
-    @JsonProperty("threads")
-    private int threads;
+    @Json(name = "threads")
+    private final int threadsCount;
 
-    @JsonProperty("todayposts")
-    private int todayPosts;
+    @Json(name = "todayposts")
+    private final int todayPostsCount;
 
-    public Forum() {}
+    public Forum(String id, String name, int threadsCount, int todayPostsCount) {
+        this.id = id;
+        this.name = name;
+        this.threadsCount = threadsCount;
+        this.todayPostsCount = todayPostsCount;
+    }
 
     private Forum(Parcel source) {
         id = source.readString();
         name = source.readString();
-        threads = source.readInt();
-        todayPosts = source.readInt();
+        threadsCount = source.readInt();
+        todayPostsCount = source.readInt();
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        // unescape some basic XML entities
-        this.name = StringEscapeUtils.unescapeXml(name);
+    public int getThreadsCount() {
+        return threadsCount;
     }
 
-    public int getThreads() {
-        return threads;
-    }
-
-    public void setThreads(int threads) {
-        this.threads = threads;
-    }
-
-    public int getTodayPosts() {
-        return todayPosts;
-    }
-
-    public void setTodayPosts(int todayPosts) {
-        this.todayPosts = todayPosts;
+    public int getTodayPostsCount() {
+        return todayPostsCount;
     }
 
     @Override
@@ -85,15 +69,15 @@ public final class Forum implements Parcelable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Forum forum = (Forum) o;
-        return Objects.equal(threads, forum.threads) &&
-                Objects.equal(todayPosts, forum.todayPosts) &&
+        return threadsCount == forum.threadsCount &&
+                todayPostsCount == forum.todayPostsCount &&
                 Objects.equal(id, forum.id) &&
                 Objects.equal(name, forum.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id, name, threads, todayPosts);
+        return Objects.hashCode(id, name, threadsCount, todayPostsCount);
     }
 
     @Override
@@ -105,7 +89,7 @@ public final class Forum implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
         dest.writeString(name);
-        dest.writeInt(threads);
-        dest.writeInt(todayPosts);
+        dest.writeInt(threadsCount);
+        dest.writeInt(todayPostsCount);
     }
 }

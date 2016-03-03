@@ -1,38 +1,31 @@
 package cl.monsoon.s1next.data.api.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Objects;
-
-import org.apache.commons.lang3.StringEscapeUtils;
+import com.squareup.moshi.Json;
 
 import java.util.List;
 
-@SuppressWarnings("UnusedDeclaration")
-@JsonIgnoreProperties(ignoreUnknown = true)
+import cl.monsoon.s1next.data.api.typeadapter.XmlDecoded;
+
 public final class ForumCategoryByIds {
+    @Json(name = "name")
+    @XmlDecoded
+    private final String name;
 
-    @JsonProperty("name")
-    private String name;
+    @Json(name = "forums")
+    private final List<Integer> forumIds;
 
-    @JsonProperty("forums")
-    private List<Integer> forumIds;
+    public ForumCategoryByIds(String name, List<Integer> forumIds) {
+        this.name = name;
+        this.forumIds = forumIds;
+    }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        // unescape some basic XML entities
-        this.name = StringEscapeUtils.unescapeXml(name);
-    }
-
     public List<Integer> getForumIds() {
         return forumIds;
-    }
-
-    public void setForumIds(List<Integer> forumIDs) {
-        this.forumIds = forumIDs;
     }
 
     @Override

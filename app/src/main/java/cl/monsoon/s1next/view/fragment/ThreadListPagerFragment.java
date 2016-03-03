@@ -92,7 +92,7 @@ public final class ThreadListPagerFragment extends BaseFragment<ThreadsWrapper> 
             mRecyclerAdapter.notifyDataSetChanged();
 
             // update total page
-            mPagerCallback.setTotalPageByThreads(threads.getThreadListInfo().getThreads());
+            mPagerCallback.setTotalPageByThreads(threads.getThreadListInfo().getThreadsCount());
 
             if (!threads.getSubForumList().isEmpty()) {
                 mSubForumsCallback.setupSubForums(threads.getSubForumList());

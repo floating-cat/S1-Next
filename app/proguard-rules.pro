@@ -22,14 +22,9 @@
 -dontwarn java.lang.ClassValue
 -dontwarn com.google.j2objc.annotations.Weak
 
-# Jackson databind
+# Moshi
 -keep public class cl.monsoon.s1next.data.api.model.** { *; }
-
--dontwarn java.nio.file.Paths
--dontwarn java.beans.Transient
--dontwarn java.beans.ConstructorProperties
--dontwarn com.fasterxml.jackson.databind.ext.DOMSerializer
--keepnames class com.fasterxml.jackson.** { *; }
+-keep public class cl.monsoon.s1next.data.api.typeadapter.** { *; }
 
 # Okio
 # https://github.com/square/okio/issues/144

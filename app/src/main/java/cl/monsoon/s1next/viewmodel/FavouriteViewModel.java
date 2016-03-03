@@ -14,10 +14,8 @@ public final class FavouriteViewModel {
 
     public View.OnClickListener goToThisFavourite() {
         return v -> {
-            Thread thread = new Thread();
             Favourite favourite = this.favourite.get();
-            thread.setId(favourite.getId());
-            thread.setTitle(favourite.getTitle());
+            Thread thread = new Thread(favourite.getId(), favourite.getTitle(), 0, 0);
 
             PostListActivity.startPostListActivity(v.getContext(), thread, false);
         };

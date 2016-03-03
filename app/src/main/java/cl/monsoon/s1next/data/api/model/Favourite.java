@@ -1,36 +1,29 @@
 package cl.monsoon.s1next.data.api.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Objects;
+import com.squareup.moshi.Json;
 
-import org.apache.commons.lang3.StringEscapeUtils;
+import cl.monsoon.s1next.data.api.typeadapter.XmlDecoded;
 
-@SuppressWarnings("UnusedDeclaration")
-@JsonIgnoreProperties(ignoreUnknown = true)
 public final class Favourite {
+    @Json(name = "id")
+    private final String id;
 
-    @JsonProperty("id")
-    private String id;
+    @Json(name = "title")
+    @XmlDecoded
+    private final String title;
 
-    @JsonProperty("title")
-    private String title;
+    public Favourite(String id, String title) {
+        this.id = id;
+        this.title = title;
+    }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        // unescape some basic XML entities
-        this.title = StringEscapeUtils.unescapeXml(title);
     }
 
     @Override

@@ -3,98 +3,84 @@ package cl.monsoon.s1next.data.api.model.collection;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Objects;
-
-import org.apache.commons.lang3.StringUtils;
+import com.squareup.moshi.Json;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import cl.monsoon.s1next.data.api.model.Account;
+import cl.monsoon.s1next.data.api.model.AccountInfo;
 import cl.monsoon.s1next.data.api.model.Post;
 import cl.monsoon.s1next.data.api.model.Thread;
-import cl.monsoon.s1next.util.StringUtil;
 
-@SuppressWarnings("UnusedDeclaration")
-@JsonIgnoreProperties(ignoreUnknown = true)
-public final class Posts extends Account {
+public final class Posts implements HasAccountInfo {
+    private final Thread postListInfo;
 
-    @JsonProperty("thread")
-    private Thread postListInfo;
+    private final ThreadAttachment threadAttachment;
 
-    @JsonProperty("threadsortshow")
-    private ThreadAttachment threadAttachment;
+    private final List<Post> postList;
 
-    @JsonProperty("postlist")
-    private List<Post> postList;
+    private final AccountInfo accountInfo;
+
+    public Posts(Thread postListInfo, ThreadAttachment threadAttachment, List<Post> postList,
+                 AccountInfo accountInfo) {
+        this.postListInfo = postListInfo;
+        this.threadAttachment = threadAttachment;
+        this.postList = postList;
+        this.accountInfo = accountInfo;
+    }
 
     public Thread getPostListInfo() {
         return postListInfo;
-    }
-
-    public void setPostListInfo(Thread postListInfo) {
-        this.postListInfo = postListInfo;
     }
 
     public ThreadAttachment getThreadAttachment() {
         return threadAttachment;
     }
 
-    public void setThreadAttachment(ThreadAttachment threadAttachment) {
-        this.threadAttachment = threadAttachment;
-    }
-
     public List<Post> getPostList() {
         return postList;
     }
 
-    public void setPostList(List<Post> postList) {
-        this.postList = postList;
+    @Override
+    public AccountInfo getAccountInfo() {
+        return accountInfo;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
         Posts posts = (Posts) o;
         return Objects.equal(postListInfo, posts.postListInfo) &&
                 Objects.equal(threadAttachment, posts.threadAttachment) &&
-                Objects.equal(postList, posts.postList);
+                Objects.equal(postList, posts.postList) &&
+                Objects.equal(accountInfo, posts.accountInfo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(super.hashCode(), postListInfo, threadAttachment, postList);
+        return Objects.hashCode(postListInfo, threadAttachment, postList, accountInfo);
     }
 
-    @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class ThreadAttachment {
+        @Json(name = "threadsortname")
+        private final String title;
 
-        @JsonProperty("threadsortname")
-        private String title;
+        @Json(name = "optionlist")
+        private final List<ThreadAttachmentInfo> infoList;
 
-        @JsonProperty("optionlist")
-        private ArrayList<Info> infoList;
+        public ThreadAttachment(String title, ArrayList<ThreadAttachmentInfo> infoList) {
+            this.title = title;
+            this.infoList = infoList;
+        }
 
         public String getTitle() {
             return title;
         }
 
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public ArrayList<Info> getInfoList() {
+        public List<ThreadAttachmentInfo> getInfoList() {
             return infoList;
-        }
-
-        public void setInfoList(ArrayList<Info> infoList) {
-            this.infoList = infoList;
         }
 
         @Override
@@ -111,39 +97,29 @@ public final class Posts extends Account {
             return Objects.hashCode(title, infoList);
         }
 
-        @JsonIgnoreProperties(ignoreUnknown = true)
-        public static final class Info implements Parcelable {
-
-            public static final Parcelable.Creator<Info> CREATOR = new Parcelable.Creator<Info>() {
-
+        public static final class ThreadAttachmentInfo implements Parcelable {
+            public static final Creator<ThreadAttachmentInfo> CREATOR = new Creator<ThreadAttachmentInfo>() {
                 @Override
-                public Info createFromParcel(Parcel source) {
-                    return new Info(source);
+                public ThreadAttachmentInfo createFromParcel(Parcel source) {
+                    return new ThreadAttachmentInfo(source);
                 }
 
                 @Override
-                public Info[] newArray(int size) {
-                    return new Info[size];
+                public ThreadAttachmentInfo[] newArray(int size) {
+                    return new ThreadAttachmentInfo[size];
                 }
             };
 
-            @JsonIgnore
             private final String label;
 
-            @JsonIgnore
             private final String value;
 
-            @JsonCreator
-            @SuppressWarnings("UnusedDeclaration")
-            public Info(@JsonProperty("title") String label,
-                        @JsonProperty("value") String value,
-                        @JsonProperty("unit") String unit) {
+            public ThreadAttachmentInfo(String label, String value) {
                 this.label = label;
-                this.value = StringUtil.unescapeNonBreakingSpace(value)
-                        + StringUtils.defaultString(unit);
+                this.value = value;
             }
 
-            private Info(Parcel source) {
+            private ThreadAttachmentInfo(Parcel source) {
                 label = source.readString();
                 value = source.readString();
             }
@@ -160,9 +136,9 @@ public final class Posts extends Account {
             public boolean equals(Object o) {
                 if (this == o) return true;
                 if (o == null || getClass() != o.getClass()) return false;
-                Info info = (Info) o;
-                return Objects.equal(label, info.label) &&
-                        Objects.equal(value, info.value);
+                ThreadAttachmentInfo that = (ThreadAttachmentInfo) o;
+                return Objects.equal(label, that.label) &&
+                        Objects.equal(value, that.value);
             }
 
             @Override

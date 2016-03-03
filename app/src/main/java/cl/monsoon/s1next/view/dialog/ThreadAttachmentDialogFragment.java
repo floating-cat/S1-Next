@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 
+import java.util.ArrayList;
+
 import cl.monsoon.s1next.R;
 import cl.monsoon.s1next.data.api.model.collection.Posts;
 import cl.monsoon.s1next.view.adapter.ThreadAttachmentInfoListArrayAdapter;
@@ -24,7 +26,8 @@ public final class ThreadAttachmentDialogFragment extends DialogFragment {
         ThreadAttachmentDialogFragment fragment = new ThreadAttachmentDialogFragment();
         Bundle bundle = new Bundle();
         bundle.putString(ARG_ATTACHMENT_TITLE, threadAttachment.getTitle());
-        bundle.putParcelableArrayList(ARG_THREAD_ATTACHMENT_INFO_LIST, threadAttachment.getInfoList());
+        bundle.putParcelableArrayList(ARG_THREAD_ATTACHMENT_INFO_LIST,
+                new ArrayList<>(threadAttachment.getInfoList()));
         fragment.setArguments(bundle);
 
         return fragment;

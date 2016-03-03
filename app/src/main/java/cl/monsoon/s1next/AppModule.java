@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.squareup.moshi.Moshi;
+
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.util.concurrent.TimeUnit;
@@ -15,6 +17,16 @@ import cl.monsoon.s1next.data.Wifi;
 import cl.monsoon.s1next.data.api.Api;
 import cl.monsoon.s1next.data.api.S1Service;
 import cl.monsoon.s1next.data.api.UserValidator;
+import cl.monsoon.s1next.data.api.typeadapter.AccountInfoAdapter;
+import cl.monsoon.s1next.data.api.typeadapter.AndroidMessageFormatterAdapter;
+import cl.monsoon.s1next.data.api.typeadapter.FavouritesAdapter;
+import cl.monsoon.s1next.data.api.typeadapter.ForumGroupsAdapter;
+import cl.monsoon.s1next.data.api.typeadapter.PostAdapter;
+import cl.monsoon.s1next.data.api.typeadapter.PostsAdapter;
+import cl.monsoon.s1next.data.api.typeadapter.SecondsToMilliSecondsAdapter;
+import cl.monsoon.s1next.data.api.typeadapter.ThreadAttachmentInfoAdapter;
+import cl.monsoon.s1next.data.api.typeadapter.ThreadsAdapter;
+import cl.monsoon.s1next.data.api.typeadapter.XmlDecodedAdapter;
 import cl.monsoon.s1next.data.pref.DownloadPreferencesManager;
 import cl.monsoon.s1next.data.pref.DownloadPreferencesRepository;
 import cl.monsoon.s1next.data.pref.GeneralPreferencesManager;
@@ -25,10 +37,10 @@ import cl.monsoon.s1next.widget.EventBus;
 import cl.monsoon.s1next.widget.PersistentHttpCookieStore;
 import dagger.Module;
 import dagger.Provides;
-import okhttp3.OkHttpClient;
 import okhttp3.JavaNetCookieJar;
+import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.JacksonConverterFactory;
+import retrofit2.MoshiConverterFactory;
 import retrofit2.Retrofit;
 import retrofit2.RxJavaCallAdapterFactory;
 import retrofit2.ScalarsConverterFactory;
@@ -76,15 +88,32 @@ final class AppModule {
 
     @Provides
     @Singleton
-    S1Service providerRetrofit(OkHttpClient okHttpClient) {
+    S1Service providerRetrofit(OkHttpClient okHttpClient, Moshi moshi) {
         return new Retrofit.Builder()
                 .client(okHttpClient)
                 .baseUrl(Api.BASE_API_URL)
                 .addConverterFactory(ScalarsConverterFactory.create())
-                .addConverterFactory(JacksonConverterFactory.create())
+                .addConverterFactory(MoshiConverterFactory.create(moshi))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build()
                 .create(S1Service.class);
+    }
+
+    @Provides
+    @Singleton
+    Moshi provideMoshi() {
+        return new Moshi.Builder()
+                .add(new AccountInfoAdapter())
+                .add(new AndroidMessageFormatterAdapter())
+                .add(new FavouritesAdapter())
+                .add(new ForumGroupsAdapter())
+                .add(new PostAdapter())
+                .add(new PostsAdapter())
+                .add(new SecondsToMilliSecondsAdapter())
+                .add(new ThreadAttachmentInfoAdapter())
+                .add(new ThreadsAdapter())
+                .add(new XmlDecodedAdapter())
+                .build();
     }
 
     @Provides

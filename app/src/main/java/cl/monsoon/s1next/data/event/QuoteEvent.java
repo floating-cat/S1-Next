@@ -1,7 +1,6 @@
 package cl.monsoon.s1next.data.event;
 
 public final class QuoteEvent {
-
     private final String quotePostId;
     private final String quotePostCount;
 

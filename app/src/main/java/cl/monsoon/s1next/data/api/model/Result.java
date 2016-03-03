@@ -1,35 +1,29 @@
 package cl.monsoon.s1next.data.api.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Objects;
+import com.squareup.moshi.Json;
 
-import cl.monsoon.s1next.data.api.DiscuzMessageFormatter;
+import cl.monsoon.s1next.data.api.typeadapter.AndroidMessageFormatter;
 
-@SuppressWarnings("UnusedDeclaration")
-@JsonIgnoreProperties(ignoreUnknown = true)
 public final class Result {
+    @Json(name = "messageval")
+    private final String status;
 
-    @JsonProperty("messageval")
-    private String status;
+    @Json(name = "messagestr")
+    @AndroidMessageFormatter
+    private final String message;
 
-    @JsonProperty("messagestr")
-    private String message;
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
+    public Result(String status, String message) {
         this.status = status;
+        this.message = message;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = DiscuzMessageFormatter.addFullStopIfNeeded(message);
+    public String getStatus() {
+        return status;
     }
 
     @Override

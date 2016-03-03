@@ -3,21 +3,16 @@ package cl.monsoon.s1next.data.api.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Objects;
+import com.squareup.moshi.Json;
 
-import org.apache.commons.lang3.StringEscapeUtils;
+import cl.monsoon.s1next.data.api.typeadapter.XmlDecoded;
 
 /**
  * Ambiguity in naming due to {@link java.lang.Thread}.
  */
-@SuppressWarnings("UnusedDeclaration")
-@JsonIgnoreProperties(ignoreUnknown = true)
 public final class Thread implements Parcelable {
-
     public static final Parcelable.Creator<Thread> CREATOR = new Parcelable.Creator<Thread>() {
-
         @Override
         public Thread createFromParcel(Parcel source) {
             return new Thread(source);
@@ -29,24 +24,30 @@ public final class Thread implements Parcelable {
         }
     };
 
-    @JsonProperty("tid")
-    private String id;
+    @Json(name = "tid")
+    private final String id;
 
-    @JsonProperty("subject")
-    private String title;
+    @Json(name = "subject")
+    @XmlDecoded
+    private final String title;
 
-    @JsonProperty("replies")
-    private int replies;
+    @Json(name = "replies")
+    private final int repliesCount;
 
-    @JsonProperty("readperm")
-    private int permission;
+    @Json(name = "readperm")
+    private final int permission;
 
-    public Thread() {}
+    public Thread(String id, String title, int repliesCount, int permission) {
+        this.id = id;
+        this.title = title;
+        this.repliesCount = repliesCount;
+        this.permission = permission;
+    }
 
     private Thread(Parcel source) {
         id = source.readString();
         title = source.readString();
-        replies = source.readInt();
+        repliesCount = source.readInt();
         permission = source.readInt();
     }
 
@@ -54,33 +55,32 @@ public final class Thread implements Parcelable {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        // unescape some basic XML entities
-        this.title = StringEscapeUtils.unescapeXml(title);
-    }
-
-    public int getReplies() {
-        return replies;
-    }
-
-    public void setReplies(int replies) {
-        this.replies = replies;
+    public int getRepliesCount() {
+        return repliesCount;
     }
 
     public int getPermission() {
         return permission;
     }
 
-    public void setPermission(int permission) {
-        this.permission = permission;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Thread thread = (Thread) o;
+        return repliesCount == thread.repliesCount &&
+                permission == thread.permission &&
+                Objects.equal(id, thread.id) &&
+                Objects.equal(title, thread.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id, title, repliesCount, permission);
     }
 
     @Override
@@ -92,38 +92,20 @@ public final class Thread implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
         dest.writeString(title);
-        dest.writeInt(replies);
+        dest.writeInt(repliesCount);
         dest.writeInt(permission);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Thread thread = (Thread) o;
-        return Objects.equal(replies, thread.replies) &&
-                Objects.equal(permission, thread.permission) &&
-                Objects.equal(id, thread.id) &&
-                Objects.equal(title, thread.title);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id, title, replies, permission);
-    }
-
-    @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class ThreadListInfo {
+        @Json(name = "threads")
+        private final int threadsCount;
 
-        @JsonProperty("threads")
-        private int threads;
-
-        public int getThreads() {
-            return threads;
+        public ThreadListInfo(int threadsCount) {
+            this.threadsCount = threadsCount;
         }
 
-        public void setThreads(int threads) {
-            this.threads = threads;
+        public int getThreadsCount() {
+            return threadsCount;
         }
 
         @Override
@@ -131,12 +113,12 @@ public final class Thread implements Parcelable {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             ThreadListInfo that = (ThreadListInfo) o;
-            return Objects.equal(threads, that.threads);
+            return threadsCount == that.threadsCount;
         }
 
         @Override
         public int hashCode() {
-            return Objects.hashCode(threads);
+            return Objects.hashCode(threadsCount);
         }
     }
 }

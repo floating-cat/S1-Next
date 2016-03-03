@@ -7,7 +7,6 @@ import org.apache.commons.lang3.StringUtils;
 import cl.monsoon.s1next.data.User;
 
 public final class Api {
-
     public static final String BASE_URL = "http://bbs.saraba1st.com/2b/";
     public static final String BASE_API_URL = "http://bbs.saraba1st.com/2b/api/mobile/";
 
@@ -54,7 +53,8 @@ public final class Api {
     private static final String URL_BROWSER_THREAD_LIST = prepend("forum-%s-%d.html");
     private static final String URL_BROWSER_POST_LIST = prepend("thread-%s-%d-1.html");
 
-    private Api() {}
+    private Api() {
+    }
 
     private static String prepend(String suffix) {
         return BASE_URL + suffix;
@@ -77,7 +77,6 @@ public final class Api {
      */
     private static String appendAvatarUrlWithUserId(String url, String userId) {
         String s = StringUtils.leftPad(userId, 9, '0');
-
         return String.format(url, s.substring(0, 3)
                 + "/" + s.substring(3, 5)
                 + "/" + s.substring(5, 7)

@@ -1,36 +1,29 @@
 package cl.monsoon.s1next.data.api.model.wrapper;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Objects;
+import com.squareup.moshi.Json;
 
 import cl.monsoon.s1next.data.api.model.Result;
 import cl.monsoon.s1next.data.api.model.collection.Posts;
 
-@SuppressWarnings("UnusedDeclaration")
-@JsonIgnoreProperties(ignoreUnknown = true)
 public final class PostsWrapper {
+    @Json(name = "Variables")
+    private final Posts posts;
 
-    @JsonProperty("Variables")
-    private Posts posts;
+    @Json(name = "Message")
+    private final Result result;
 
-    @JsonProperty("Message")
-    private Result result;
+    public PostsWrapper(Posts posts, Result result) {
+        this.posts = posts;
+        this.result = result;
+    }
 
     public Posts getPosts() {
         return posts;
     }
 
-    public void setPosts(Posts posts) {
-        this.posts = posts;
-    }
-
     public Result getResult() {
         return result;
-    }
-
-    public void setResult(Result result) {
-        this.result = result;
     }
 
     @Override

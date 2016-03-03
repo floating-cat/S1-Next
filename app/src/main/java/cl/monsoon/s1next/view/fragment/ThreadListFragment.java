@@ -48,7 +48,7 @@ public final class ThreadListFragment extends BaseViewPagerFragment
         mForumName = forum.getName();
         mForumId = forum.getId();
         if (savedInstanceState == null) {
-            setTotalPageByThreads(forum.getThreads());
+            setTotalPageByThreads(forum.getThreadsCount());
         }
     }
 

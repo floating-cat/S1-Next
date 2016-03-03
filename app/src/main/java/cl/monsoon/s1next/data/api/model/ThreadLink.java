@@ -12,9 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class ThreadLink implements Parcelable {
-
     public static final Parcelable.Creator<ThreadLink> CREATOR = new Parcelable.Creator<ThreadLink>() {
-
         @Override
         public ThreadLink createFromParcel(Parcel source) {
             return new ThreadLink(source);
@@ -169,7 +167,6 @@ public final class ThreadLink implements Parcelable {
     }
 
     public static final class Builder {
-
         private final String threadId;
         private int jumpPage = 1;
         private String quotePostId;

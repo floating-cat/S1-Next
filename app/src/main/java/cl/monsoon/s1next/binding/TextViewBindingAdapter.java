@@ -72,8 +72,9 @@ public final class TextViewBindingAdapter {
     public static void setForum(TextView textView, Forum forum, int gentleAccentColor) {
         textView.setText(forum.getName());
         // add today's posts count to each forum
-        if (forum.getTodayPosts() != 0) {
-            ViewUtil.concatWithTwoSpacesForRtlSupport(textView, String.valueOf(forum.getTodayPosts()),
+        if (forum.getTodayPostsCount() != 0) {
+            ViewUtil.concatWithTwoSpacesForRtlSupport(textView, String.valueOf(
+                    forum.getTodayPostsCount()),
                     gentleAccentColor);
         }
     }
@@ -92,7 +93,7 @@ public final class TextViewBindingAdapter {
         textView.setEnabled(hasPermission);
 
         // add thread's replies count to each thread
-        ViewUtil.concatWithTwoSpacesForRtlSupport(textView, String.valueOf(thread.getReplies()),
+        ViewUtil.concatWithTwoSpacesForRtlSupport(textView, String.valueOf(thread.getRepliesCount()),
                 hasPermission ? themeManager.getGentleAccentColor()
                         : themeManager.getHintOrDisabledGentleAccentColor());
     }

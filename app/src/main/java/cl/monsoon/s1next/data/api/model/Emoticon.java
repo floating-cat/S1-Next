@@ -5,7 +5,6 @@ import android.util.Pair;
 import com.google.common.base.Objects;
 
 public final class Emoticon {
-
     private final Pair<String, String> pair;
 
     public Emoticon(String imagePath, String entity) {

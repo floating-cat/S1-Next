@@ -11,7 +11,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class Quote {
-
     /**
      * The quoted user identification which was encoded in server.
      * Without this we can't notify the user.
@@ -24,14 +23,7 @@ public final class Quote {
      */
     private String quoteMessage;
 
-    private Quote() {}
-
-    public String getEncodedUserId() {
-        return encodedUserId;
-    }
-
-    public String getQuoteMessage() {
-        return quoteMessage;
+    private Quote() {
     }
 
     /**
@@ -60,6 +52,14 @@ public final class Quote {
                 && !TextUtils.isEmpty(quote.getQuoteMessage()), "Cannot get the quote information.");
 
         return quote;
+    }
+
+    public String getEncodedUserId() {
+        return encodedUserId;
+    }
+
+    public String getQuoteMessage() {
+        return quoteMessage;
     }
 
     @Override

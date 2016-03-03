@@ -82,8 +82,7 @@ public final class PostListFragment extends BaseViewPagerFragment
     }
 
     public static PostListFragment newInstance(ThreadLink threadLink) {
-        Thread thread = new Thread();
-        thread.setId(threadLink.getThreadId());
+        Thread thread = new Thread(threadLink.getThreadId(), null, 0, 0);
 
         PostListFragment fragment = new PostListFragment();
         Bundle bundle = new Bundle();
@@ -117,7 +116,7 @@ public final class PostListFragment extends BaseViewPagerFragment
                 setCurrentPage(jumpPage - 1);
             } else {
                 // +1 for original post
-                setTotalPageByPosts(thread.getReplies() + 1);
+                setTotalPageByPosts(thread.getRepliesCount() + 1);
                 if (bundle.getBoolean(ARG_SHOULD_GO_TO_LAST_PAGE, false)) {
                     setCurrentPage(getTotalPages() - 1);
                 }
@@ -227,7 +226,8 @@ public final class PostListFragment extends BaseViewPagerFragment
     @Override
     public void setThreadTitle(CharSequence title) {
         Thread thread = Preconditions.checkNotNull(getArguments().getParcelable(ARG_THREAD));
-        thread.setTitle(title.toString());
+        // TODO
+        // thread.setTitle(title.toString());
         mThreadTitle = thread.getTitle();
         setTitleWithPosition(getCurrentPage());
     }
