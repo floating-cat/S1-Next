@@ -16,6 +16,10 @@
 #   public *;
 #}
 
+# Data Binding
+# https://stackoverflow.com/q/35472130
+-dontwarn android.databinding.tool.util.SourceCodeEscapers$**
+
 # Guava
 # https://github.com/google/guava/wiki/UsingProGuardWithGuava
 -dontwarn sun.misc.Unsafe
