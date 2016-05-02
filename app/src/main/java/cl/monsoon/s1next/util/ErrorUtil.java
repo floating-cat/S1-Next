@@ -6,7 +6,7 @@ import android.util.Log;
 import java.io.IOException;
 
 import cl.monsoon.s1next.R;
-import retrofit2.HttpException;
+import retrofit2.adapter.rxjava.HttpException;
 
 public final class ErrorUtil {
 

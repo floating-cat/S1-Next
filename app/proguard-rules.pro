@@ -17,10 +17,7 @@
 #}
 
 # Guava
-# https://github.com/google/guava/wiki/UsingProGuardWithGuava
--dontwarn sun.misc.Unsafe
--dontwarn java.lang.ClassValue
--dontwarn com.google.j2objc.annotations.Weak
+-dontwarn com.google.common.**
 
 # Jackson databind
 -keep public class cl.monsoon.s1next.data.api.model.** { *; }
@@ -58,6 +55,7 @@
 -dontwarn retrofit2.Platform$Java8
 
 # RxJava
+-dontwarn sun.misc.Unsafe
 -keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
    long producerIndex;
    long consumerIndex;
