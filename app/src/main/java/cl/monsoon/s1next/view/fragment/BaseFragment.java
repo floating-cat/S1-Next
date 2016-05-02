@@ -274,7 +274,7 @@ public abstract class BaseFragment<D> extends Fragment {
         mSubscription = getSourceObservable().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext(mUserValidator::validateIntercept)
-                .finallyDo(this::finallyDo)
+                .doAfterTerminate(this::doAfterTerminate)
                 .subscribe(this::onNext, this::onError);
     }
 
@@ -335,7 +335,7 @@ public abstract class BaseFragment<D> extends Fragment {
      * Called if it will not make further calls to {@link #onNext(Object)}
      * or {@link #onError(Throwable)} occurred during data loading.
      */
-    private void finallyDo() {
+    private void doAfterTerminate() {
         mLoadingViewModel.setLoading(LoadingViewModel.LOADING_FINISH);
         mDataRetainedFragment.stale = true;
     }

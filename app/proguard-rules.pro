@@ -15,12 +15,16 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+# Data Binding
+# https://stackoverflow.com/q/35472130
+-dontwarn android.databinding.tool.util.SourceCodeEscapers$**
 
 # Guava
 # https://github.com/google/guava/wiki/UsingProGuardWithGuava
 -dontwarn sun.misc.Unsafe
 -dontwarn java.lang.ClassValue
 -dontwarn com.google.j2objc.annotations.Weak
+-dontwarn com.google.common.collect.**
 
 # Jackson databind
 -keep public class cl.monsoon.s1next.data.api.model.** { *; }

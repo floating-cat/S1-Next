@@ -25,13 +25,13 @@ import cl.monsoon.s1next.widget.EventBus;
 import cl.monsoon.s1next.widget.PersistentHttpCookieStore;
 import dagger.Module;
 import dagger.Provides;
-import okhttp3.OkHttpClient;
 import okhttp3.JavaNetCookieJar;
+import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.JacksonConverterFactory;
 import retrofit2.Retrofit;
-import retrofit2.RxJavaCallAdapterFactory;
-import retrofit2.ScalarsConverterFactory;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.jackson.JacksonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Provides instances of the objects when we need to inject.

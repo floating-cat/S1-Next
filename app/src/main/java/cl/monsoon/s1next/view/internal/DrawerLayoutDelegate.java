@@ -102,7 +102,7 @@ public abstract class DrawerLayoutDelegate {
                 }
             }
         };
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerToggle.setDrawerIndicatorEnabled(mDrawerIndicatorEnabled);
 
         setupNavDrawerItem(mDrawerLayout, mNavigationView);

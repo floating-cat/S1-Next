@@ -97,7 +97,7 @@ abstract class ProgressDialogFragment<D> extends DialogFragment {
     private void request() {
         mSubscription = getSourceObservable().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .finallyDo(this::finallyDo)
+                .doAfterTerminate(this::doAfterTerminate)
                 .subscribe(this::onNext, this::onError);
     }
 
@@ -147,9 +147,9 @@ abstract class ProgressDialogFragment<D> extends DialogFragment {
     }
 
     /**
-     * @see BaseFragment#finallyDo()
+     * @see BaseFragment#doAfterTerminate()
      */
-    private void finallyDo() {
+    private void doAfterTerminate() {
         dismissAllowingStateLoss();
     }
 
