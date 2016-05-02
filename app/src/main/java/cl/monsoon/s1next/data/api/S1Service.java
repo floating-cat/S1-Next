@@ -1,5 +1,6 @@
 package cl.monsoon.s1next.data.api;
 
+import cl.monsoon.s1next.data.api.model.wrapper.CaptchaWrapper;
 import cl.monsoon.s1next.data.api.model.wrapper.FavouritesWrapper;
 import cl.monsoon.s1next.data.api.model.wrapper.ForumGroupsWrapper;
 import cl.monsoon.s1next.data.api.model.wrapper.PostsWrapper;
@@ -30,9 +31,12 @@ public interface S1Service {
     @GET(Api.URL_QUOTE_POST_REDIRECT)
     Observable<Response<Void>> getQuotePostResponseBody(@Query("ptid") String threadId, @Query("pid") String quotePostId);
 
+    @GET(Api.URL_LOGIN_CAPTCHA)
+    Observable<CaptchaWrapper> getLoginCaptcha();
+
     @FormUrlEncoded
     @POST(Api.URL_LOGIN)
-    Observable<ResultWrapper> login(@Field("username") String username, @Field("password") String password);
+    Observable<ResultWrapper> login(@Field("username") String username, @Field("password") String password, @Field("sechash") String captchaHash, @Field("seccodeverify") String captcha);
 
     @GET(Api.URL_AUTHENTICITY_TOKEN_HELPER)
     Observable<ResultWrapper> refreshAuthenticityToken();

@@ -19,7 +19,7 @@ import cl.monsoon.s1next.data.api.Api;
 import cl.monsoon.s1next.databinding.FragmentLoginBinding;
 import cl.monsoon.s1next.util.IntentUtil;
 import cl.monsoon.s1next.util.ViewUtil;
-import cl.monsoon.s1next.view.dialog.LoginDialogFragment;
+import cl.monsoon.s1next.view.dialog.LoginCaptchaPicUrlRequestDialogFragment;
 
 /**
  * A Fragment offers login via username and password.
@@ -105,9 +105,9 @@ public final class LoginFragment extends Fragment {
             // form field with an error.
             focusView.requestFocus();
         } else {
-            // start to log in
-            LoginDialogFragment.newInstance(username, password).show(getFragmentManager(),
-                    LoginDialogFragment.TAG);
+            // start to get CAPTCHA if needed
+            LoginCaptchaPicUrlRequestDialogFragment.newInstance(username, password).show(
+                    getFragmentManager(), LoginCaptchaPicUrlRequestDialogFragment.TAG);
         }
     }
 }

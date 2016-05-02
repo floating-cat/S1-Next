@@ -1,6 +1,7 @@
 package cl.monsoon.s1next.view.dialog;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import cl.monsoon.s1next.R;
 import cl.monsoon.s1next.data.api.model.Result;
@@ -16,6 +17,8 @@ public final class LoginDialogFragment extends ProgressDialogFragment<ResultWrap
 
     private static final String ARG_USERNAME = "username";
     private static final String ARG_PASSWORD = "password";
+    private static final String ARG_CAPTCHA_HASH = "captcha_hash";
+    private static final String ARG_CAPTCHA_VALUE = "captcha_value";
 
     /**
      * For desktop is "login_succeed".
@@ -25,11 +28,15 @@ public final class LoginDialogFragment extends ProgressDialogFragment<ResultWrap
     private static final String STATUS_AUTH_SUCCESS = "location_login_succeed_mobile";
     private static final String STATUS_AUTH_SUCCESS_ALREADY = "login_succeed";
 
-    public static LoginDialogFragment newInstance(String username, String password) {
+    public static LoginDialogFragment newInstance(String username, String password,
+                                                  @Nullable String captchaHash,
+                                                  @Nullable String captchaValue) {
         LoginDialogFragment fragment = new LoginDialogFragment();
         Bundle bundle = new Bundle();
         bundle.putString(ARG_USERNAME, username);
         bundle.putString(ARG_PASSWORD, password);
+        bundle.putString(ARG_CAPTCHA_HASH, captchaHash);
+        bundle.putString(ARG_CAPTCHA_VALUE, captchaValue);
         fragment.setArguments(bundle);
 
         return fragment;
@@ -39,7 +46,9 @@ public final class LoginDialogFragment extends ProgressDialogFragment<ResultWrap
     protected Observable<ResultWrapper> getSourceObservable() {
         String username = getArguments().getString(ARG_USERNAME);
         String password = getArguments().getString(ARG_PASSWORD);
-        return mS1Service.login(username, password).map(resultWrapper -> {
+        String captchaHash = getArguments().getString(ARG_CAPTCHA_HASH);
+        String captcha = getArguments().getString(ARG_CAPTCHA_VALUE);
+        return mS1Service.login(username, password, captchaHash, captcha).map(resultWrapper -> {
             // the authenticity token is not fresh after login
             resultWrapper.getAccount().setAuthenticityToken(null);
             mUserValidator.validate(resultWrapper.getAccount());

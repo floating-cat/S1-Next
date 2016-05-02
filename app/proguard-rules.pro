@@ -24,7 +24,7 @@
 -dontwarn sun.misc.Unsafe
 -dontwarn java.lang.ClassValue
 -dontwarn com.google.j2objc.annotations.Weak
--dontwarn com.google.common.collect.**
+-dontwarn com.google.common.**
 
 # Jackson databind
 -keep public class cl.monsoon.s1next.data.api.model.** { *; }

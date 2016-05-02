@@ -58,6 +58,8 @@
 
     <string name="error_field_required">Can\'t leave this empty</string>
 
+    <string name="captcha">CAPTCHA</string>
+    <string name="captcha_content_desc" translatable="false">@string/captcha</string>
     <string name="dialog_progress_message_login">Signing in…</string>
 
     <!-- forum -->

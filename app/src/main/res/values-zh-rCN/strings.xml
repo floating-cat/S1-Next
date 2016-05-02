@@ -40,6 +40,7 @@
     <string name="prompt_username">用户名/UID/Email</string>
     <string name="prompt_password">密码</string>
     <string name="error_field_required">此处不能留空</string>
+    <string name="captcha">验证码</string>
     <string name="dialog_progress_message_login">登录中…</string>
     <string name="dialog_button_text_add">添加</string>
     <string name="dialog_progress_message_favourites_add">添加中…</string>
