@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <item name="tag_glide" type="id" />
-
-    <item name="tag_drawer_runnable" type="id" />
-    <item name="tag_drawable_callback" type="id" />
-
-</resources>
