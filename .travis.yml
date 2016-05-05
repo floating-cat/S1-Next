@@ -3,7 +3,7 @@ language: android
 android:
   components:
     - tools
-    - build-tools-23.0.2
+    - build-tools-23.0.3
     - android-23
     - extra-android-m2repository
 
@@ -13,10 +13,10 @@ jdk:
 script:
   - ./gradlew clean check -Dpre-dex-libraries=false -Dabort-on-error=false
 
+sudo: false
+
 notifications:
   email: false
-
-sudo: false
 
 cache:
   directories:

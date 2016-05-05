@@ -17,19 +17,7 @@
 #}
 
 # Guava
-# https://github.com/google/guava/wiki/UsingProGuardWithGuava
--dontwarn sun.misc.Unsafe
--dontwarn java.lang.ClassValue
--dontwarn com.google.j2objc.annotations.Weak
-
-# Jackson databind
--keep public class cl.monsoon.s1next.data.api.model.** { *; }
-
--dontwarn java.nio.file.Paths
--dontwarn java.beans.Transient
--dontwarn java.beans.ConstructorProperties
--dontwarn com.fasterxml.jackson.databind.ext.DOMSerializer
--keepnames class com.fasterxml.jackson.** { *; }
+-dontwarn com.google.common.**
 
 # Okio
 # https://github.com/square/okio/issues/144
@@ -58,6 +46,7 @@
 -dontwarn retrofit2.Platform$Java8
 
 # RxJava
+-dontwarn sun.misc.Unsafe
 -keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
    long producerIndex;
    long consumerIndex;
