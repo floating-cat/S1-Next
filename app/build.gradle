@@ -17,6 +17,7 @@ android {
         vectorDrawables {
             generatedDensities = ['mdpi', 'hdpi', 'xhdpi', 'xxhdpi', 'xxxhdpi']
         }
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         debug {
@@ -70,6 +71,7 @@ dependencies {
     compile "com.android.support:design:$supportVersion"
     compile "com.android.support:cardview-v7:$supportVersion"
     compile "com.android.support:percent:$supportVersion"
+    compile "com.android.support:recyclerview-v7:$supportVersion"
 
     compile 'com.google.guava:guava:19.0'
     // https://github.com/google/guava/wiki/UsingProGuardWithGuava
@@ -85,4 +87,14 @@ dependencies {
     compile 'com.hannesdorfmann:adapterdelegates2:2.0.0'
     compile 'io.reactivex:rxjava:1.1.3'
     compile 'io.reactivex:rxandroid:1.1.0'
+
+
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:2.0.52-beta'
+    testCompile 'com.google.truth:truth:0.28'
+    testCompile 'org.robolectric:robolectric:3.1-rc1'
+}
+
+configurations.all {
+    resolutionStrategy.force 'com.google.guava:guava:19.0'
 }
