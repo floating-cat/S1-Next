@@ -24,7 +24,7 @@
 
         <meta-data
             android:name="com.bugsnag.android.API_KEY"
-            android:value="6e8e30660fec3876e701e69587257f60" />
+            android:value="372bc8980fa008b1c814407581bf9aff" />
 
         <activity
             android:name=".view.activity.LoginActivity"
