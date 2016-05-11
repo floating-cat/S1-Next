@@ -1,4 +1,4 @@
-package cl.monsoon.s1next.view.fragment;
+package cl.monsoon.s1next.settings;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;

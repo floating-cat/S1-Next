@@ -85,4 +85,5 @@ dependencies {
     compile 'com.hannesdorfmann:adapterdelegates:1.2.0'
     compile 'io.reactivex:rxjava:1.1.5'
     compile 'io.reactivex:rxandroid:1.2.0'
+    compile 'com.f2prateek.rx.preferences:rx-preferences:1.0.1'
 }

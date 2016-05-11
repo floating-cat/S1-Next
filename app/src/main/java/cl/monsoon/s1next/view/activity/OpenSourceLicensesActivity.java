@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import cl.monsoon.s1next.R;
-import cl.monsoon.s1next.view.fragment.OpenSourceLicensesFragment;
+import cl.monsoon.s1next.settings.OpenSourceLicensesFragment;
 
 /**
  * An Activity shows the libraries and files we use in our app.

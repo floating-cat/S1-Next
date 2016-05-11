@@ -12,7 +12,6 @@ import cl.monsoon.s1next.App;
 import cl.monsoon.s1next.R;
 import cl.monsoon.s1next.data.User;
 import cl.monsoon.s1next.data.api.Api;
-import cl.monsoon.s1next.data.pref.DownloadPreferencesManager;
 import cl.monsoon.s1next.widget.BezelImageView;
 
 public final class BezelImageViewBindingAdapter {

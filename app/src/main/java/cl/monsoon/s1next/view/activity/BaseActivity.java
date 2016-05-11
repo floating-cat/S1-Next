@@ -31,7 +31,6 @@ import cl.monsoon.s1next.R;
 import cl.monsoon.s1next.data.User;
 import cl.monsoon.s1next.data.event.FontSizeChangeEvent;
 import cl.monsoon.s1next.data.event.ThemeChangeEvent;
-import cl.monsoon.s1next.data.pref.DownloadPreferencesManager;
 import cl.monsoon.s1next.data.pref.ThemeManager;
 import cl.monsoon.s1next.util.RxJavaUtil;
 import cl.monsoon.s1next.view.dialog.ThreadGoDialogFragment;

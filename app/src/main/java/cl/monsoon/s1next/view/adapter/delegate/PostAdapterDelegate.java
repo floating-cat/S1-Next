@@ -20,7 +20,6 @@ import javax.inject.Inject;
 import cl.monsoon.s1next.App;
 import cl.monsoon.s1next.R;
 import cl.monsoon.s1next.data.api.model.Post;
-import cl.monsoon.s1next.data.pref.DownloadPreferencesManager;
 import cl.monsoon.s1next.databinding.ItemPostBinding;
 import cl.monsoon.s1next.viewmodel.PostViewModel;
 import cl.monsoon.s1next.widget.EventBus;

@@ -2,25 +2,25 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:persistent="false"
-    tools:context="cl.monsoon.s1next.view.fragment.DownloadPreferenceFragment">
+    tools:context=".settings.DownloadPreferenceFragment">
 
     <ListPreference
-        android:defaultValue="@string/pref_download_total_cache_size_default_value"
-        android:entries="@array/pref_download_total_cache_size_entries"
-        android:entryValues="@array/pref_download_total_cache_size_entry_values"
-        android:key="pref_key_download_total_cache_size"
+        android:defaultValue="@string/pref_total_download_cache_size_default_value"
+        android:entries="@array/pref_total_download_cache_size_entries"
+        android:entryValues="@array/pref_total_download_cache_size_entry_values"
+        android:key="pref_key_total_download_cache_size"
         android:summary="%s"
-        android:title="@string/pref_download_total_cache_size" />
+        android:title="@string/pref_total_download_cache_size" />
 
     <PreferenceCategory
         android:persistent="false"
         android:title="@string/pref_avatar">
 
         <ListPreference
-            android:defaultValue="@string/pref_download_avatars_strategy_default_value"
-            android:entries="@array/pref_download_avatars_strategy_entries"
-            android:entryValues="@array/pref_download_avatars_strategy_entry_values"
-            android:key="pref_key_download_avatars_strategy"
+            android:defaultValue="@string/pref_avatars_download_strategy_default_value"
+            android:entries="@array/pref_avatars_download_strategy_entries"
+            android:entryValues="@array/pref_avatars_download_strategy_entry_values"
+            android:key="pref_key_avatars_download_strategy"
             android:summary="%s"
             android:title="@string/pref_downloads" />
 
@@ -47,10 +47,10 @@
         android:title="@string/pref_image">
 
         <ListPreference
-            android:defaultValue="@string/pref_download_images_strategy_default_value"
-            android:entries="@array/pref_download_images_strategy_entries"
-            android:entryValues="@array/pref_download_images_strategy_entry_values"
-            android:key="pref_key_download_images_strategy"
+            android:defaultValue="@string/pref_images_download_strategy_default_value"
+            android:entries="@array/pref_images_download_strategy_entries"
+            android:entryValues="@array/pref_images_download_strategy_entry_values"
+            android:key="pref_key_images_download_strategy"
             android:summary="%s"
             android:title="@string/pref_downloads" />
 

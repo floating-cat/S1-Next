@@ -59,28 +59,28 @@
         <item>1.30</item>
     </string-array>
 
-    <string-array name="pref_download_total_cache_size_entries" translatable="false">
+    <string-array name="pref_total_download_cache_size_entries" translatable="false">
         <item>32MB</item>
         <item>64MB</item>
         <item>128MB</item>
     </string-array>
 
-    <string-array name="pref_download_total_cache_size_entry_values" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
+    <string-array name="pref_total_download_cache_size_entry_values" translatable="false">
+        <item>LOW</item>
+        <item>NORMAL</item>
+        <item>HIGH</item>
     </string-array>
 
-    <string-array name="pref_download_avatars_strategy_entries">
+    <string-array name="pref_avatars_download_strategy_entries">
         <item>@string/pref_download_avatars_entries_1</item>
         <item>@string/pref_download_avatars_entries_2</item>
         <item>@string/pref_download_avatars_entries_3</item>
     </string-array>
 
-    <string-array name="pref_download_avatars_strategy_entry_values" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
+    <string-array name="pref_avatars_download_strategy_entry_values" translatable="false">
+        <item>NO</item>
+        <item>WIFI</item>
+        <item>ALWAYS</item>
     </string-array>
 
     <string-array name="pref_avatar_resolution_strategy_entries">
@@ -90,9 +90,9 @@
     </string-array>
 
     <string-array name="pref_avatar_resolution_strategy_entry_values" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
+        <item>LOW_RESOLUTION</item>
+        <item>HIGH_RESOLUTION_WHEN_WIFI</item>
+        <item>HIGH_RESOLUTION</item>
     </string-array>
 
     <string-array name="pref_avatar_cache_invalidation_interval_entries" translatable="false">
@@ -102,21 +102,21 @@
     </string-array>
 
     <string-array name="pref_avatar_cache_invalidation_interval_entry_values" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
+        <item>EVERY_DAY</item>
+        <item>EVERY_WEEK</item>
+        <item>EVERY_MONTH</item>
     </string-array>
 
-    <string-array name="pref_download_images_strategy_entries">
+    <string-array name="pref_images_download_strategy_entries">
         <item>@string/pref_download_images_entries_1</item>
         <item>@string/pref_download_images_entries_2</item>
         <item>@string/pref_download_images_entries_3</item>
     </string-array>
 
-    <string-array name="pref_download_images_strategy_entry_values" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
+    <string-array name="pref_images_download_strategy_entry_values" translatable="false">
+        <item>NO</item>
+        <item>WIFI</item>
+        <item>ALWAYS</item>
     </string-array>
 
 </resources>

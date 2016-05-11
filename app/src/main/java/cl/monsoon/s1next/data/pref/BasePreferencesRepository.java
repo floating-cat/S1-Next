@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.StringRes;
 
+import com.f2prateek.rx.preferences.Preference;
+
 /**
  * A base class wraps {@link SharedPreferences}.
  */

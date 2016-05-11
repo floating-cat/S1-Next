@@ -1,4 +1,4 @@
-package cl.monsoon.s1next.view.fragment;
+package cl.monsoon.s1next.settings;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -100,7 +100,8 @@ public final class OpenSourceLicensesFragment extends PreferenceFragment {
                 {"Retrofit", "RETROFIT"},
                 {"Retrolambda", "APACHE_LICENSE_2.0"},
                 {"RxAndroid", "RX_ANDROID"},
-                {"RxJava", "RX_JAVA"}
+                {"RxJava", "RX_JAVA"},
+                {"RxPreferences", "RX_PREFERENCES"}
         };
     }
 

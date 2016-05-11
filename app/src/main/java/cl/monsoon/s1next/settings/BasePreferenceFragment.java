@@ -1,4 +1,4 @@
-package cl.monsoon.s1next.view.fragment;
+package cl.monsoon.s1next.settings;
 
 import android.content.SharedPreferences;
 import android.preference.PreferenceFragment;
@@ -10,7 +10,6 @@ import android.support.annotation.CallSuper;
  */
 abstract class BasePreferenceFragment extends PreferenceFragment
         implements SharedPreferences.OnSharedPreferenceChangeListener {
-
     @Override
     @CallSuper
     public void onStart() {

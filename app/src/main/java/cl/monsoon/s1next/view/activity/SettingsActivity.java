@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import cl.monsoon.s1next.R;
-import cl.monsoon.s1next.view.fragment.DownloadPreferenceFragment;
-import cl.monsoon.s1next.view.fragment.GeneralPreferenceFragment;
+import cl.monsoon.s1next.settings.DownloadPreferenceFragment;
+import cl.monsoon.s1next.settings.GeneralPreferenceFragment;
 
 /**
  * An Activity includes settings that allow users

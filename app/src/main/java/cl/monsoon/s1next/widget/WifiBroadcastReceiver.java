@@ -12,7 +12,7 @@ import javax.inject.Inject;
 
 import cl.monsoon.s1next.App;
 import cl.monsoon.s1next.data.Wifi;
-import cl.monsoon.s1next.data.pref.DownloadPreferencesManager;
+import cl.monsoon.s1next.data.pref.DownloadStrategy;
 import cl.monsoon.s1next.util.NetworkUtil;
 
 /**
@@ -62,9 +62,20 @@ public final class WifiBroadcastReceiver {
     }
 
     /**
+     * Checks whether we need to monitor the Wi-Fi status.
+     * We needn't monitor the Wi-Fi status if we needn't download avatars or images.
+     */
+    private boolean shouldMonitorWifi(DownloadStrategy avatarsDownloadStrategy,
+                                      DownloadStrategy imagesDownloadStrategy) {
+        return avatarsDownloadStrategy == DownloadStrategy.WIFI
+                || imagesDownloadStrategy == DownloadStrategy.WIFI;
+    }
+
+    /**
      * A marker interface that any {@link android.app.Activity}
      * implements this interface would be registered to monitor
      * wifi status (if needed) automatically.
      */
-    public interface NeedMonitorWifi {}
+    public interface NeedMonitorWifi {
+    }
 }
