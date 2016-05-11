@@ -1,8 +1,8 @@
 package cl.monsoon.s1next.view.fragment;
 
 import android.content.SharedPreferences;
+import android.preference.PreferenceFragment;
 import android.support.annotation.CallSuper;
-import android.support.v14.preference.PreferenceFragment;
 
 /**
  * A helper class for registering/unregistering

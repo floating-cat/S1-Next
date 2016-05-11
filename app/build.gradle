@@ -69,7 +69,6 @@ dependencies {
     compile "com.android.support:design:$supportVersion"
     compile "com.android.support:cardview-v7:$supportVersion"
     compile "com.android.support:percent:$supportVersion"
-    compile "com.android.support:preference-v14:$supportVersion"
 
     compile 'com.google.guava:guava:19.0'
     // https://github.com/google/guava/wiki/UsingProGuardWithGuava

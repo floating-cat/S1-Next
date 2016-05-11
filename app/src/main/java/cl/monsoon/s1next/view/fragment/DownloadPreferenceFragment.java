@@ -23,7 +23,8 @@ public final class DownloadPreferenceFragment extends BasePreferenceFragment {
     private DownloadPreferencesManager mDownloadPreferencesManager;
 
     @Override
-    public void onCreatePreferences(Bundle bundle, String s) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preference_download);
         mDownloadPreferencesManager = App.getAppComponent(getActivity())
                 .getDownloadPreferencesManager();

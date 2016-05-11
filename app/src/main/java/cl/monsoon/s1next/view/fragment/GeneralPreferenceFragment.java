@@ -2,7 +2,7 @@ package cl.monsoon.s1next.view.fragment;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.preference.Preference;
+import android.preference.Preference;
 
 import javax.inject.Inject;
 
@@ -41,7 +41,8 @@ public final class GeneralPreferenceFragment extends BasePreferenceFragment
     ThemeManager mThemeManager;
 
     @Override
-    public void onCreatePreferences(Bundle bundle, String s) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preference_general);
         App.getAppComponent(getActivity()).inject(this);
 
