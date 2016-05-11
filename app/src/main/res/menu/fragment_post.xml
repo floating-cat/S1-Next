@@ -5,7 +5,7 @@
     tools:context="cl.monsoon.s1next.view.fragment.PostListFragment">
     <item
         android:id="@+id/menu_thread_attachment"
-        android:icon="?attr/iconMenuThreadAttachment"
+        android:icon="@drawable/ic_menu_attachment_24dp"
         android:orderInCategory="21"
         android:title="@string/menu_thread_attachment"
         app:showAsAction="ifRoom" />

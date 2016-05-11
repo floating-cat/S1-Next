@@ -32,7 +32,6 @@ import cl.monsoon.s1next.data.event.EmoticonClickEvent;
 import cl.monsoon.s1next.data.pref.GeneralPreferencesManager;
 import cl.monsoon.s1next.databinding.FragmentReplyBinding;
 import cl.monsoon.s1next.util.DeviceUtil;
-import cl.monsoon.s1next.util.ResourceUtil;
 import cl.monsoon.s1next.util.RxJavaUtil;
 import cl.monsoon.s1next.util.ViewUtil;
 import cl.monsoon.s1next.view.adapter.EmoticonPagerAdapter;
@@ -281,16 +280,14 @@ public final class ReplyFragment extends Fragment {
 
     private void setEmoticonIcon() {
         if (mMenuEmoticon != null) {
-            mMenuEmoticon.setIcon(ResourceUtil.getResourceId(getContext().getTheme(),
-                    R.attr.iconMenuEmoticon));
+            mMenuEmoticon.setIcon(R.drawable.ic_menu_keyboard_24dp);
             mMenuEmoticon.setTitle(R.string.menu_emoticon);
         }
     }
 
     private void setKeyboardIcon() {
         if (mMenuEmoticon != null) {
-            mMenuEmoticon.setIcon(ResourceUtil.getResourceId(getContext().getTheme(),
-                    R.attr.iconMenuKeyboard));
+            mMenuEmoticon.setIcon(R.drawable.ic_menu_keyboard_24dp);
             mMenuEmoticon.setTitle(R.string.menu_keyboard);
         }
     }

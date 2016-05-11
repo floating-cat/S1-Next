@@ -40,8 +40,7 @@ public final class ToolbarDelegate {
      * Sets Toolbar's navigation icon to cross.
      */
     public void setupNavCrossIcon() {
-        mToolbar.setNavigationIcon(ResourceUtil.getResourceId(mAppCompatActivity.getTheme(),
-                R.attr.iconClose));
+        mToolbar.setNavigationIcon(R.drawable.ic_close_24dp);
     }
 
     public Toolbar getToolbar() {

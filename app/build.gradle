@@ -10,12 +10,10 @@ android {
 
     defaultConfig {
         applicationId 'cl.monsoon.s1next'
-        minSdkVersion 17
+        minSdkVersion 21
         targetSdkVersion 23
         versionCode 13
         versionName '1.0.0-dev'
-
-        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         debug {

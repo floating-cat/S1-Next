@@ -11,13 +11,7 @@
     <attr name="emoticonKeyboardTabLayoutBackground" format="color|reference" />
     <attr name="emoticonKeyboardBackground" format="color|reference" />
 
-    <attr name="iconClose" format="reference" />
-
     <attr name="iconMenuPageJump" format="reference" />
-    <attr name="iconMenuPersonAdd" format="reference" />
-    <attr name="iconMenuThreadAttachment" format="reference" />
-    <attr name="iconMenuEmoticon" format="reference" />
-    <attr name="iconMenuKeyboard" format="reference" />
     <attr name="iconMenuSend" format="reference" />
 
     <declare-styleable name="BezelImageView">

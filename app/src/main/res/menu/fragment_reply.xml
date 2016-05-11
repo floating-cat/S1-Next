@@ -5,7 +5,7 @@
     tools:context="cl.monsoon.s1next.view.fragment.ReplyFragment">
     <item
         android:id="@+id/menu_emoticon"
-        android:icon="?attr/iconMenuEmoticon"
+        android:icon="@drawable/ic_insert_comment_white_24dp"
         android:orderInCategory="21"
         android:title="@string/menu_emoticon"
         app:showAsAction="ifRoom" />
