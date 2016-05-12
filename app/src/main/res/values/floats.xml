@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- https://www.google.com/design/spec/style/icons.html#icons-system-icons -->
-    <string name="alpha_inactive_icon_on_light_background" translatable="false">0.30</string>
-    <string name="alpha_inactive_icon_on_dark_background" translatable="false">0.26</string>
+    <string name="inactive_icon_opacity_on_light_background" translatable="false">0.30</string>
+    <string name="inactive_icon_opacity_on_dark_background" translatable="false">0.26</string>
 </resources>
