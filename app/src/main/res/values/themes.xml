@@ -44,8 +44,8 @@
         <item name="emoticonKeyboardTabLayoutBackground">@color/light_emoticon_keyboard_tab_layout_background</item>
         <item name="emoticonKeyboardBackground">@color/light_emoticon_keyboard_background</item>
 
-        <item name="iconMenuPageJump">@drawable/selector_menu_swap_horiz_on_light_background</item>
-        <item name="iconMenuSend">@drawable/selector_menu_send_on_light_background</item>
+        <item name="iconMenuPageJump">@drawable/selector_menu_swap_horiz</item>
+        <item name="iconMenuSend">@drawable/selector_menu_send</item>
     </style>
 
     <style name="Base.Theme.Light.Inverse">
@@ -57,8 +57,8 @@
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
 
         <item name="fabBackgroundTint">?attr/colorPrimary</item>
-        <item name="iconMenuPageJump">@drawable/selector_menu_swap_horiz_on_dark_background</item>
-        <item name="iconMenuSend">@drawable/selector_menu_send_on_dark_background</item>
+        <item name="iconMenuPageJump">@drawable/selector_menu_swap_horiz</item>
+        <item name="iconMenuSend">@drawable/selector_menu_send</item>
     </style>
 
     <style name="Base.Theme.Light.Inverse.Amber">
@@ -101,8 +101,8 @@
         <item name="fabBackgroundTint">?attr/colorAccent</item>
         <item name="emoticonKeyboardTabLayoutBackground">@color/dark_emoticon_keyboard_tab_layout_background</item>
         <item name="emoticonKeyboardBackground">@color/dark_emoticon_keyboard_background</item>
-        <item name="iconMenuPageJump">@drawable/selector_menu_swap_horiz_on_dark_background</item>
-        <item name="iconMenuSend">@drawable/selector_menu_send_on_dark_background</item>
+        <item name="iconMenuPageJump">@drawable/selector_menu_swap_horiz</item>
+        <item name="iconMenuSend">@drawable/selector_menu_send</item>
     </style>
 
     <style name="Base.Theme.Dark.NightMode">
