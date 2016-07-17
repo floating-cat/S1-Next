@@ -24,7 +24,7 @@ public final class Api {
     static final String URL_QUOTE_POST_REDIRECT = "/2b/forum.php?mod=redirect&goto=findpost";
 
     static final String URL_LOGIN_CAPTCHA = "index.php?&module=secure&type=login";
-    static final String URL_LOGIN = "index.php?module=login&loginsubmit=yes&loginfield=auto&cookietime=2592000";
+    static final String URL_LOGIN = "http://bbs.saraba1st.com/2b/member.php?mod=logging&action=login&loginsubmit=yes&mobile=2&handlekey=loginform&inajax=1&loginfield=auto&cookietime=2592000";
     /**
      * A URL used to get the correct authenticity token after login.
      * <p>

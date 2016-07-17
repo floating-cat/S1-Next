@@ -3,15 +3,16 @@ package cl.monsoon.s1next.view.dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import cl.monsoon.s1next.R;
-import cl.monsoon.s1next.data.api.model.Result;
-import cl.monsoon.s1next.data.api.model.wrapper.ResultWrapper;
 import rx.Observable;
 
 /**
  * A {@link ProgressDialogFragment} posts a request to login to server.
  */
-public final class LoginDialogFragment extends ProgressDialogFragment<ResultWrapper> {
+public final class LoginDialogFragment extends ProgressDialogFragment<String> {
 
     public static final String TAG = LoginDialogFragment.class.getName();
 
@@ -43,28 +44,39 @@ public final class LoginDialogFragment extends ProgressDialogFragment<ResultWrap
     }
 
     @Override
-    protected Observable<ResultWrapper> getSourceObservable() {
+    protected Observable<String> getSourceObservable() {
         String username = getArguments().getString(ARG_USERNAME);
         String password = getArguments().getString(ARG_PASSWORD);
         String captchaHash = getArguments().getString(ARG_CAPTCHA_HASH);
         String captcha = getArguments().getString(ARG_CAPTCHA_VALUE);
-        return mS1Service.login(username, password, captchaHash, captcha).map(resultWrapper -> {
-            // the authenticity token is not fresh after login
-            resultWrapper.getAccount().setAuthenticityToken(null);
-            mUserValidator.validate(resultWrapper.getAccount());
-            return resultWrapper;
+        return mS1Service.login(username, password, captchaHash, captcha).map(string -> {
+//            // the authenticity token is not fresh after login
+//            resultWrapper.getAccount().setAuthenticityToken(null);
+//            mUserValidator.validate(resultWrapper.getAccount());
+            return string;
         });
     }
 
     @Override
-    protected void onNext(ResultWrapper data) {
-        Result result = data.getResult();
-        if (result.getStatus().equals(STATUS_AUTH_SUCCESS)
-                || result.getStatus().equals(STATUS_AUTH_SUCCESS_ALREADY)) {
-            showShortTextAndFinishCurrentActivity(result.getMessage());
+    protected void onNext(String data) {
+        Pattern pattern = Pattern.compile("<p>(.+)<script");
+        Matcher matcher = pattern.matcher(data);
+        if (matcher.find()) {
+            String message = matcher.group(1);
+            if (message.contains("欢迎您回来")) {
+                showShortTextAndFinishCurrentActivity(message);
+            } else {
+                showShortText(message);
+            }
         } else {
-            showShortText(result.getMessage());
+            showShortText(getString(R.string.message_unknown_error));
         }
+//        if (result.getStatus().equals(STATUS_AUTH_SUCCESS)
+//                || result.getStatus().equals(STATUS_AUTH_SUCCESS_ALREADY)) {
+//            showShortTextAndFinishCurrentActivity(result.getMessage());
+//        } else {
+//            showShortText(result.getMessage());
+//        }
     }
 
     @Override

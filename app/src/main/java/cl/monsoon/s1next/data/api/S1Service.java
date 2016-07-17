@@ -36,7 +36,7 @@ public interface S1Service {
 
     @FormUrlEncoded
     @POST(Api.URL_LOGIN)
-    Observable<ResultWrapper> login(@Field("username") String username, @Field("password") String password, @Field("sechash") String captchaHash, @Field("seccodeverify") String captcha);
+    Observable<String> login(@Field("username") String username, @Field("password") String password, @Field("sechash") String captchaHash, @Field("seccodeverify") String captcha);
 
     @GET(Api.URL_AUTHENTICITY_TOKEN_HELPER)
     Observable<ResultWrapper> refreshAuthenticityToken();
